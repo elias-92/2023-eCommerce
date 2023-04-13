@@ -10,7 +10,6 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import {AddShoppingCart} from '@mui/icons-material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import nikeShoes from '../assets/img/nikeShoes.jpg';
 import accounting from 'accounting';
 
 const ExpandMore = styled((props) => {
@@ -24,7 +23,9 @@ const ExpandMore = styled((props) => {
 	}),
 }));
 
-export default function Product() {
+export default function Product({
+	product: {id, name, productType, price, rating, image, description},
+}) {
 	const [expanded, setExpanded] = React.useState(false);
 
 	const handleExpandClick = () => {
@@ -36,28 +37,29 @@ export default function Product() {
 			<CardHeader
 				action={
 					<Typography mt={2} variant="h5" color="textSecondary">
-						{accounting.formatMoney(50)}
+						{accounting.formatMoney(price)}
 					</Typography>
 				}
-				title="Shoes"
-				subheader="in stock"
+				title={name}
+				subheader={'in stock'}
 			/>
 			<CardMedia
 				component="img"
-				height="194"
-				image={nikeShoes}
-				alt="Nike Shoes"
+				height="250"
+				image={image}
+				title={name}
+				alt={name}
 			/>
 			<CardContent>
 				<Typography variant="body2" color="text.secondary">
-					Running Shoes
+					{productType}
 				</Typography>
 			</CardContent>
 			<CardActions disableSpacing>
 				<IconButton aria-label="Add to Cart">
 					<AddShoppingCart fontSize="large" />
 				</IconButton>
-				{Array(4)
+				{Array(rating)
 					.fill()
 					.map((_, i) => (
 						<p>&#11088;</p>
@@ -73,10 +75,7 @@ export default function Product() {
 			</CardActions>
 			<Collapse in={expanded} timeout="auto" unmountOnExit>
 				<CardContent>
-					<Typography paragraph>
-						Zapatillas hermosas para correr tenemos del talle 38 al 43 no te las
-						podes perder
-					</Typography>
+					<Typography paragraph>{description}</Typography>
 				</CardContent>
 			</Collapse>
 		</Card>
