@@ -9,8 +9,11 @@ import logo from '../assets/img/logo.png';
 import {ShoppingCart} from '@mui/icons-material';
 import {Badge} from '@mui/material';
 import '../App.css';
+import {Link} from 'react-router-dom';
+import {useStateValue} from '../stateProvider';
 
 export default function NavBar() {
+	const [{basket}] = useStateValue();
 	return (
 		<Box sx={{flexGrow: 1}} mb={'7rem'}>
 			<AppBar
@@ -18,9 +21,11 @@ export default function NavBar() {
 				sx={{backgroundColor: 'whitesmoke', boxShadow: 'none'}}
 			>
 				<Toolbar>
-					<IconButton>
-						<img src={logo} alt="logo" height={'20rem'} />
-					</IconButton>
+					<Link to="/">
+						<IconButton>
+							<img src={logo} alt="logo" height={'20rem'} />
+						</IconButton>
+					</Link>
 					<div className="grow" />
 					<Typography variant="h6" color="textPrimary" component="p">
 						Hello guest
@@ -29,11 +34,13 @@ export default function NavBar() {
 						<Button variant="outlined" sx={{marginLeft: '1rem'}}>
 							<strong>Sing in</strong>
 						</Button>
-						<IconButton aria-label="show cart item" color="inherit">
-							<Badge badgeContent={2} color="secondary">
-								<ShoppingCart fontSize="large" color="primary" />
-							</Badge>
-						</IconButton>
+						<Link to="/checkout-page">
+							<IconButton aria-label="show cart item" color="inherit">
+								<Badge badgeContent={basket?.length} color="secondary">
+									<ShoppingCart fontSize="large" color="primary" />
+								</Badge>
+							</IconButton>
+						</Link>
 					</div>
 				</Toolbar>
 			</AppBar>
