@@ -16,7 +16,7 @@ const cardRating = {
 export default function CheckoutCard({
 	product: {id, name, price, rating, image},
 }) {
-	const [{basket}, dispatch] = useStateValue();
+	const [, dispatch] = useStateValue();
 	const removeItem = () =>
 		dispatch({
 			type: actionTypes.REMOVE_ITEM,
