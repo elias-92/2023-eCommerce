@@ -29,7 +29,7 @@ export default function Product({
 	product: {id, name, productType, price, rating, image, description},
 }) {
 	const [expanded, setExpanded] = React.useState(false);
-	const [{basket}, dispatch] = useStateValue();
+	const [, dispatch] = useStateValue();
 	const handleExpandClick = () => {
 		setExpanded(!expanded);
 	};

@@ -9,11 +9,25 @@ import logo from '../assets/img/logo.png';
 import {ShoppingCart} from '@mui/icons-material';
 import {Badge} from '@mui/material';
 import '../App.css';
-import {Link} from 'react-router-dom';
+import {Link as LinkRoute} from 'react-router-dom';
 import {useStateValue} from '../stateProvider';
+import {getAuth} from 'firebase/auth';
+import {firebaseApp} from '../firebase';
+import {actionTypes} from '../reducer';
 
 export default function NavBar() {
-	const [{basket}] = useStateValue();
+	const auth = getAuth(firebaseApp);
+	const [{basket, user}, dispatch] = useStateValue();
+	const handleAuth = () => {
+		if (user) {
+			auth.signOut();
+			dispatch({
+				type: actionTypes.SIGN_OUT,
+				basket: [],
+				user: null,
+			});
+		}
+	};
 	return (
 		<Box sx={{flexGrow: 1}} mb={'7rem'}>
 			<AppBar
@@ -21,26 +35,32 @@ export default function NavBar() {
 				sx={{backgroundColor: 'whitesmoke', boxShadow: 'none'}}
 			>
 				<Toolbar>
-					<Link to="/">
+					<LinkRoute to="/">
 						<IconButton>
 							<img src={logo} alt="logo" height={'20rem'} />
 						</IconButton>
-					</Link>
+					</LinkRoute>
 					<div className="grow" />
 					<Typography variant="h6" color="textPrimary" component="p">
-						Hello guest
+						Hello {user ? user.email : 'guest'}
 					</Typography>
 					<div>
-						<Button variant="outlined" sx={{marginLeft: '1rem'}}>
-							<strong>Sing in</strong>
-						</Button>
-						<Link to="/checkout-page">
+						<LinkRoute to="/sign-in">
+							<Button
+								variant="outlined"
+								sx={{marginLeft: '1rem'}}
+								onClick={handleAuth}
+							>
+								<strong>{user ? 'Sign out' : 'Sign in'}</strong>
+							</Button>
+						</LinkRoute>
+						<LinkRoute to="/checkout-page">
 							<IconButton aria-label="show cart item" color="inherit">
 								<Badge badgeContent={basket?.length} color="secondary">
 									<ShoppingCart fontSize="large" color="primary" />
 								</Badge>
 							</IconButton>
-						</Link>
+						</LinkRoute>
 					</div>
 				</Toolbar>
 			</AppBar>

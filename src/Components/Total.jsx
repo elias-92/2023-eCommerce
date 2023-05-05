@@ -2,6 +2,8 @@ import {Button} from '@mui/material';
 import accounting from 'accounting';
 import React from 'react';
 import {useStateValue} from '../stateProvider';
+import {Link as LinkRoute} from 'react-router-dom';
+import {getBasketTotal} from '../reducer';
 
 const root = {
 	display: 'flex',
@@ -15,16 +17,12 @@ const Total = () => {
 	return (
 		<div style={root}>
 			<h5>Total items: {basket?.length}</h5>
-			<h5>
-				{accounting.formatMoney(
-					basket?.reduce((acc, item) => {
-						return item.price + acc;
-					}, 0)
-				)}
-			</h5>
-			<Button variant="contained" color="secondary" sx={{mt: 2}}>
-				Check Out
-			</Button>
+			<h5>{accounting.formatMoney(getBasketTotal(basket))}</h5>
+			<LinkRoute to="/checkout">
+				<Button variant="contained" color="secondary" sx={{mt: 2}}>
+					Check Out
+				</Button>
+			</LinkRoute>
 		</div>
 	);
 };
