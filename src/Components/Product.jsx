@@ -11,8 +11,8 @@ import Typography from '@mui/material/Typography';
 import {AddShoppingCart} from '@mui/icons-material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import accounting from 'accounting';
-import {actionTypes} from '../reducer';
-import {useStateValue} from '../stateProvider';
+import {useStateValue} from '../context/stateProvider';
+import {actionTypes} from '../context/reducer';
 
 const ExpandMore = styled((props) => {
 	const {expand, ...other} = props;
@@ -78,7 +78,7 @@ export default function Product({
 				{Array(rating)
 					.fill()
 					.map((_, i) => (
-						<p>&#11088;</p>
+						<p key={i}>&#11088;</p>
 					))}
 				<ExpandMore
 					expand={expanded}

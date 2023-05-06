@@ -1,9 +1,9 @@
 import {Button} from '@mui/material';
 import accounting from 'accounting';
 import React from 'react';
-import {useStateValue} from '../stateProvider';
 import {Link as LinkRoute} from 'react-router-dom';
-import {getBasketTotal} from '../reducer';
+import {useStateValue} from '../context/stateProvider';
+import {getBasketTotal} from '../context/reducer';
 
 const root = {
 	display: 'flex',

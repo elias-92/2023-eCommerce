@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid, Typography} from '@mui/material';
 import CheckoutCard from './CheckoutCard';
 import Total from './Total';
-import {useStateValue} from '../stateProvider';
+import {useStateValue} from '../context/stateProvider';
 
 const CheckoutPage = () => {
 	const [{basket}] = useStateValue();
@@ -10,8 +10,8 @@ const CheckoutPage = () => {
 		return (
 			<>
 				{basket?.map((item) => (
-					<Grid item xs={12} sm={8} md={6} lg={4}>
-						<CheckoutCard key={item.name} product={item} />
+					<Grid key={item.id} item xs={12} sm={8} md={6} lg={4}>
+						<CheckoutCard product={item} />
 					</Grid>
 				))}
 			</>

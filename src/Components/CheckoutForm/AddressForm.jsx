@@ -3,8 +3,8 @@ import React from 'react';
 import {useForm, FormProvider} from 'react-hook-form';
 import AddressInput from './AddressInput';
 import {Link as LinkRoute} from 'react-router-dom';
-import {useStateValue} from '../../stateProvider';
-import {actionTypes} from '../../reducer';
+import {useStateValue} from '../../context/stateProvider';
+import {actionTypes} from '../../context/reducer';
 
 const AddressForm = ({handleNext}) => {
 	const [, dispatch] = useStateValue();

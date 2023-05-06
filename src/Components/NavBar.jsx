@@ -10,10 +10,10 @@ import {ShoppingCart} from '@mui/icons-material';
 import {Badge} from '@mui/material';
 import '../App.css';
 import {Link as LinkRoute} from 'react-router-dom';
-import {useStateValue} from '../stateProvider';
 import {getAuth} from 'firebase/auth';
 import {firebaseApp} from '../firebase';
-import {actionTypes} from '../reducer';
+import {useStateValue} from '../context/stateProvider';
+import {actionTypes} from '../context/reducer';
 
 export default function NavBar() {
 	const auth = getAuth(firebaseApp);

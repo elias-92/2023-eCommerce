@@ -9,8 +9,8 @@ export default function Products() {
 		<Box sx={{flexGrow: 1}}>
 			<Grid container spacing={3} padding={3}>
 				{products.map((product) => (
-					<Grid item xs={12} sm={6} md={4} lg={3}>
-						<Product key={product.id} product={product} />
+					<Grid key={product.id} item xs={12} sm={6} md={4} lg={3}>
+						<Product product={product} />
 					</Grid>
 				))}
 			</Grid>

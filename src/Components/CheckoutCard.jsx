@@ -7,8 +7,8 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import accounting from 'accounting';
-import {useStateValue} from '../stateProvider';
-import {actionTypes} from '../reducer';
+import {useStateValue} from '../context/stateProvider';
+import {actionTypes} from '../context/reducer';
 
 const cardRating = {
 	display: 'flex',
@@ -52,7 +52,7 @@ export default function CheckoutCard({
 					{Array(rating)
 						.fill()
 						.map((_, i) => (
-							<p>&#11088;</p>
+							<p key={i}>&#11088;</p>
 						))}
 				</div>
 				<IconButton aria-label="Delete item" onClick={removeItem}>
