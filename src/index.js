@@ -4,8 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
-import {StateProvider} from './stateProvider';
-import {initialState, reducer} from './reducer';
+import {StateProvider} from './context/stateProvider';
+import {initialState, reducer} from './context/reducer';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

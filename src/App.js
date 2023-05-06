@@ -5,12 +5,12 @@ import Products from './Components/Products';
 import {Route, Routes} from 'react-router-dom';
 import SignIn from './Components/SignIn';
 import SignUp from './Components/SignUp';
-import {useStateValue} from './stateProvider';
 import {useEffect} from 'react';
 import {getAuth} from 'firebase/auth';
-import {actionTypes} from './reducer';
 import {firebaseApp} from './firebase';
 import Checkout from './Components/CheckoutForm/Checkout';
+import {useStateValue} from './context/stateProvider';
+import {actionTypes} from './context/reducer';
 
 function App() {
 	const auth = getAuth(firebaseApp);
