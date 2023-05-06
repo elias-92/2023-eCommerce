@@ -8,12 +8,15 @@ import Typography from '@mui/material/Typography';
 import {createTheme, ThemeProvider} from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
+import {useStateValue} from '../../context/stateProvider';
+import Confirmation from './Confirmation';
 
 const steps = ['Shipping address', 'Payment details'];
 
 const theme = createTheme();
 
 export default function Checkout() {
+	const [{paymentMessage}] = useStateValue();
 	const [activeStep, setActiveStep] = React.useState(0);
 
 	const handleNext = () => {
@@ -27,7 +30,7 @@ export default function Checkout() {
 		activeStep === 0 ? (
 			<AddressForm handleNext={handleNext} />
 		) : (
-			<PaymentForm handleBack={handleBack} />
+			<PaymentForm handleBack={handleBack} handleNext={handleNext} />
 		);
 
 	return (
@@ -44,7 +47,11 @@ export default function Checkout() {
 							</Step>
 						))}
 					</Stepper>
-					<Form />
+					{activeStep === steps.length ? (
+						<Confirmation message={paymentMessage} />
+					) : (
+						<Form />
+					)}
 				</Paper>
 			</Container>
 		</ThemeProvider>

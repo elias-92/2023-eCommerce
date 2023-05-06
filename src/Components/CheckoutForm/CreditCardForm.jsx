@@ -1,13 +1,14 @@
-import {Button} from '@mui/material';
+import {Button, CircularProgress} from '@mui/material';
 import {CardElement, useElements, useStripe} from '@stripe/react-stripe-js';
-import React from 'react';
-import {useStateValue} from '../../stateProvider';
+import React, {useState} from 'react';
+import {useStateValue} from '../../context/stateProvider';
 import accounting from 'accounting';
-import {getBasketTotal} from '../../reducer';
+import {actionTypes, getBasketTotal} from '../../context/reducer';
 import axios from 'axios';
 
-const CreditCardForm = ({handleNext, handleBack}) => {
-	const [{basket}] = useStateValue();
+const CreditCardForm = ({handleBack, handleNext}) => {
+	const [{basket}, dispatch] = useStateValue();
+	const [loading, setLoading] = useState(false);
 	const elements = useElements();
 	const stripe = useStripe();
 
@@ -38,17 +39,31 @@ const CreditCardForm = ({handleNext, handleBack}) => {
 			type: 'card',
 			card: elements.getElement(CardElement),
 		});
+		setLoading(true);
 		if (!error) {
 			const {id} = paymentMethod;
 			try {
-				const {data} = await axios.post('https://localhost:3001/api/checkout', {
+				const {data} = await axios.post('http://localhost:3001/api/checkout', {
 					id,
-					amount: getBasketTotal(basket) * 100,
+					amount: getBasketTotal(basket),
 				});
-				console.log(data);
+				dispatch({
+					type: actionTypes.SET_PAYMENT_MESSAGE,
+					paymentMessage: data.message,
+				});
+				if (data.message === 'Payment successful') {
+					dispatch({
+						type: actionTypes.EMPTY_BASKET,
+						basket: [],
+					});
+				}
+				elements.getElement(CardElement).clear();
+				handleNext();
 			} catch (error) {
 				console.log(error);
+				handleNext();
 			}
+			setLoading(false);
 		}
 	};
 
@@ -65,11 +80,13 @@ const CreditCardForm = ({handleNext, handleBack}) => {
 				<Button variant="outlined" onClick={handleBack}>
 					Back
 				</Button>
-				<Button
-					type="submit"
-					variant="contained"
-					color="primary"
-				>{`Pay ${accounting.formatMoney(getBasketTotal(basket))}`}</Button>
+				<Button type="submit" variant="contained" color="primary">
+					{loading ? (
+						<CircularProgress />
+					) : (
+						`Pay ${accounting.formatMoney(getBasketTotal(basket))}`
+					)}
+				</Button>
 			</div>
 		</form>
 	);

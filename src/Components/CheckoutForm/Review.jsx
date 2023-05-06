@@ -1,7 +1,7 @@
 import {List, ListItem, ListItemText, Typography} from '@mui/material';
 import React from 'react';
-import {useStateValue} from '../../stateProvider';
-import {getBasketTotal} from '../../reducer';
+import {useStateValue} from '../../context/stateProvider';
+import {getBasketTotal} from '../../context/reducer';
 import accounting from 'accounting';
 
 const Review = () => {
