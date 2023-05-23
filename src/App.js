@@ -11,6 +11,7 @@ import {firebaseApp} from './firebase';
 import Checkout from './Components/CheckoutForm/Checkout';
 import {useStateValue} from './context/stateProvider';
 import {actionTypes} from './context/reducer';
+import Footer from './Components/Footer';
 
 function App() {
 	const auth = getAuth(firebaseApp);
@@ -38,6 +39,7 @@ function App() {
 				<Route path="/checkout-page" element={<CheckoutPage />} />
 				<Route path="/checkout" element={<Checkout />} />
 			</Routes>
+			<Footer />
 		</>
 	);
 }

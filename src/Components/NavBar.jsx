@@ -32,19 +32,39 @@ export default function NavBar() {
 		<Box sx={{flexGrow: 1}} mb={'7rem'}>
 			<AppBar
 				position="fixed"
-				sx={{backgroundColor: 'whitesmoke', boxShadow: 'none'}}
+				sx={{
+					backgroundColor: 'whitesmoke',
+					boxShadow: 'none',
+					'@media (max-width: 600px)': {
+						flexDirection: 'column',
+					},
+				}}
 			>
-				<Toolbar>
+				<Toolbar
+					sx={{
+						'@media (max-width: 600px)': {
+							flexDirection: 'column',
+						},
+					}}
+				>
 					<LinkRoute to="/">
 						<IconButton>
 							<img src={logo} alt="logo" height={'20rem'} />
 						</IconButton>
 					</LinkRoute>
-					<div className="grow" />
+					<Box sx={{flexGrow: 1}} />
 					<Typography variant="h6" color="textPrimary" component="p">
 						Hello {user ? user.email : 'guest'}
 					</Typography>
-					<div>
+					<Box
+						sx={{
+							'@media (max-width: 600px)': {
+								display: 'flex',
+								justifyContent: 'space-between',
+								width: '100%',
+							},
+						}}
+					>
 						<LinkRoute to="/sign-in">
 							<Button
 								variant="outlined"
@@ -54,14 +74,16 @@ export default function NavBar() {
 								<strong>{user ? 'Sign out' : 'Sign in'}</strong>
 							</Button>
 						</LinkRoute>
-						<LinkRoute to="/checkout-page">
-							<IconButton aria-label="show cart item" color="inherit">
-								<Badge badgeContent={basket?.length} color="secondary">
-									<ShoppingCart fontSize="large" color="primary" />
-								</Badge>
-							</IconButton>
-						</LinkRoute>
-					</div>
+						{user && (
+							<LinkRoute to="/checkout-page">
+								<IconButton aria-label="show cart item" color="inherit">
+									<Badge badgeContent={basket?.length} color="secondary">
+										<ShoppingCart fontSize="large" color="primary" />
+									</Badge>
+								</IconButton>
+							</LinkRoute>
+						)}
+					</Box>
 				</Toolbar>
 			</AppBar>
 		</Box>
