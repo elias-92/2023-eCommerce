@@ -9,7 +9,7 @@ const app = express();
 
 //middleware
 
-app.use(cors({origin: 'http://localhost:3000'}));
+app.use(cors({origin: 'https://2023-ecommerce.netlify.app'}));
 app.use(express.json());
 
 app.post('/api/checkout', async (req, res) => {
