@@ -43,7 +43,7 @@ const CreditCardForm = ({handleBack, handleNext}) => {
 		if (!error) {
 			const {id} = paymentMethod;
 			try {
-				const {data} = await axios.post('http://localhost:3001/api/checkout', {
+				const {data} = await axios.post('https://2023-ecommerce.netlify.com/api/checkout', {
 					id,
 					amount: getBasketTotal(basket),
 				});
