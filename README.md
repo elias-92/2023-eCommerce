@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# 2023 Ecommerce
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The "Ecommerce" project is a web page designed as a practice exercise to acquire skills in the development of e-commerce applications. Through this platform, users can simulate the online shopping experience, exploring products and adding them to a virtual cart.
 
-## Available Scripts
+The project includes basic functionalities such as user registration, login, product display and product details. In addition, a shopping cart has been implemented where users can add and remove selected products.
 
-In the project directory, you can run:
+To simulate the payment process, a fictitious payment method has been integrated to allow a purchase confirmation. Although no real transaction takes place, this functionality allows understanding the key concepts related to the payment process in an e-commerce environment.
 
-### `npm start`
+### Open [2023 Ecommerce](https://2023-ecommerce.netlify.app) to view it in your browser.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository or download the files.
+2. Run `npm install` to install the dependencies.
+3. Configure any necessary settings (if applicable).
 
-### `npm test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Run `npm start` to start the application.
+2. Access the application in your browser at `http://localhost:3000` (or the specified port).
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+User registration: Allows users to create a personalized account to access additional features such as shopping cart management and payment options.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Product Catalog: Displays a list of products available for purchase, with details such as images, descriptions, prices and stock availability.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Shopping cart: Allows users to add selected products for purchase, display a summary of the items in the cart and delete products.
 
-### `npm run eject`
+Checkout: Provides a credit card payment option.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Technologies used
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- React
+- Material UI
+- React Router Dom
+- Emotion Styled
+- React Date Range
+- Stripe
+- Firebase
+- Axios
+- Express
+- Cors
+- Accounting
